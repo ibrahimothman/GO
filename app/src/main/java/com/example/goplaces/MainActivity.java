@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -16,7 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "MainActivityLogs";
     private static final int ERROR_DIALOG_REQUEST = 1000;
 
     @BindView(R.id.init_map_btn)
@@ -36,8 +37,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init() {
-        Intent mapIntent = new Intent(this,MapActivity.class);
-        startActivity(mapIntent);
+        mInitMapBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent mapIntent = new Intent(MainActivity.this,MapActivity.class);
+                startActivity(mapIntent);
+            }
+        });
+
     }
 
     public boolean isServiceOk(){
